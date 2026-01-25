@@ -10,7 +10,7 @@ export default function Section({
   return (
     <section
       aria-labelledby={ariaLabel}
-      className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm"
+      className="rounded-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 p-6 shadow-sm"
     >
       {children}
     </section>
