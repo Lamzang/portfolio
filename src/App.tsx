@@ -1,105 +1,142 @@
 import { NavLink } from "react-router";
+import Section from "./components/ui/section";
+import SectionTitle from "./components/ui/sectionTitle";
 
 export default function Home() {
   return (
-    <main>
-      <header>
-        <div>
-          <strong>Jaeik In — Portfolio</strong>
+    <div className="mx-auto max-w-5xl px-4 py-6 space-y-4">
+      <Section ariaLabel="hero">
+        <h1
+          id="hero-title"
+          className="mt-2 text-2xl font-extrabold tracking-tight md:text-3xl"
+        >
+          대충 개쩌는 제목
+        </h1>
+        <p className="mt-3 text-sm leading-relaxed text-neutral-700">
+          자기소개 내용들
+        </p>
+
+        <div className="mt-5 flex flex-wrap gap-2">
+          <NavLink
+            to="/projects"
+            className="inline-flex items-center justify-center rounded-xl bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800 transition"
+          >
+            대표 프로젝트 보기
+          </NavLink>
+          <NavLink
+            to="/resume"
+            className="inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-4 py-2 text-sm font-semibold text-neutral-900 hover:bg-neutral-50 transition"
+          >
+            이력서 보기
+          </NavLink>
+        </div>
+      </Section>
+
+      {/* 프로젝트들 */}
+      <Section ariaLabel="projects-title">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <SectionTitle name="project" />
+            <p className="mt-1 text-sm text-neutral-600">
+              대표 3개 프로젝트를 보여주기
+            </p>
+          </div>
+
+          <NavLink
+            to="/projects"
+            className="text-sm font-semibold text-neutral-700 hover:text-neutral-900 hover:underline"
+          >
+            전체 보기 →
+          </NavLink>
         </div>
 
-        <nav aria-label="navigation">
-          <NavLink to="/projects">Projects</NavLink>
-          <NavLink to="/resume">Resume</NavLink>
-          <NavLink to="/services">Services</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
-        </nav>
-      </header>
+        <ol className="mt-4 space-y-3">
+          {["Project A", "Project B", "Project C"].map((name) => (
+            <li
+              key={name}
+              className="rounded-xl border border-neutral-200 bg-neutral-50 p-4"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <div className="text-sm font-bold">{name}</div>
+                  <div className="mt-1 text-sm text-neutral-600">
+                    — 프로젝트 설명
+                  </div>
+                </div>
 
-      <section aria-labelledby="title">
-        <h1 id="hero-title">
-          설계부터 배포까지, 작동하는 제품으로 완성합니다.
-        </h1>
-        <p>
-          AI 파이프라인, 데이터 대시보드, 운영까지 고려한 풀스택 구현을 합니다.
-          프로젝트는 “기술 나열”이 아니라 “케이스 스터디(문제 → 설계 → 구현 →
-          결과)”로 정리했습니다.
-        </p>
-      </section>
-
-      {/* 아래는 대표 프로젝트 나열 */}
-      <section aria-labelledby="featured-projects-title">
-        <h2 id="featured-projects-title">Featured Projects</h2>
-        <p>대표 3개 프로젝트를 보여주기</p>
-
-        <ol>
-          <li>
-            <strong>Project A</strong> — 프로젝트 설명
-          </li>
-          <li>
-            <strong>Project B</strong> — 프로젝트 설명
-          </li>
-          <li>
-            <strong>Project C</strong> — 프로젝트 설명
-          </li>
+                <span className="text-xs font-semibold text-neutral-500">
+                  Case Study
+                </span>
+              </div>
+            </li>
+          ))}
         </ol>
-
-        <p>
-          <a href="/projects">전체 프로젝트 보기</a>
-          {/* 또는 이 화면에서 전체프로젝트 나열 */}
+      </Section>
+      {/* What I Do */}
+      <Section ariaLabel="what-I-Do">
+        <SectionTitle name="what-I-Do" />
+        <p className="mt-1 text-sm text-neutral-600">
+          실제 업무에서 제공 가능한 역량 3가지
         </p>
-      </section>
 
-      {/* What can I Do */}
-      <section aria-labelledby="what-i-do-title">
-        <h2 id="what-i-do-title">What I Do</h2>
-        <p>실제 업무에서 제공 가능한 역량 3가지</p>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <div className="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-4">
+            <div className="text-sm font-bold">System Design</div>
+            <p className="mt-2 text-sm text-neutral-600">
+              아키텍처/데이터 모델/API 설계, 트레이드오프
+            </p>
+          </div>
 
-        <ul>
-          <li>
-            <strong>System Design</strong>: 아키텍처/데이터 모델/API 설계,
-            트레이드오프
-          </li>
-          <li>
-            <strong>Product Engineering</strong>: UI/상태관리/성능 최적화,
-            사용자 플로우 구현
-          </li>
-          <li>
-            <strong>Machine Learning & 3D modeling</strong>: 머신러닝/3d 모델링
-            구현
-          </li>
-        </ul>
-      </section>
+          <div className="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-4">
+            <div className="text-sm font-bold">Product Engineering</div>
+            <p className="mt-2 text-sm text-neutral-600">
+              UI/상태관리/성능 최적화, 사용자 플로우 구현
+            </p>
+          </div>
 
+          <div className="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-4">
+            <div className="text-sm font-bold">
+              Machine Learning &amp; 3D Modeling
+            </div>
+            <p className="mt-2 text-sm text-neutral-600">
+              머신러닝/3D 모델링 구현
+            </p>
+          </div>
+        </div>
+      </Section>
       {/* Services */}
-      <section aria-labelledby="services-title">
-        <h2 id="services-title">Services</h2>
-        <p>
+      <Section ariaLabel="service">
+        <SectionTitle name="service" />
+        <p className="mt-1 text-sm text-neutral-600">
           외주 및 프리랜서로서 안내문구
-          {/* 다른 프리랜서 참고해서 추가하기 */}
         </p>
 
-        <ul>
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-neutral-700">
           <li>서비스 제공 절차</li>
           <li>의뢰인 준비사항</li>
           <li>개발원칙</li>
         </ul>
 
-        <p>
-          <NavLink to="/services">Services</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
-        </p>
-      </section>
-
-      {/* Footer */}
-      <footer>
-        <p>© {new Date().getFullYear()} Jaeik In</p>
-        <p>
-          <NavLink to="/projects">Projects</NavLink>
-          <NavLink to="/services">Services</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
-        </p>
-      </footer>
-    </main>
+        <div className="mt-5 flex flex-wrap gap-2">
+          <NavLink
+            to="/services"
+            className="inline-flex items-center justify-center rounded-xl bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800 transition"
+          >
+            Services
+          </NavLink>
+        </div>
+      </Section>
+      {/* Contact */}
+      <Section ariaLabel="contact">
+        <SectionTitle name="contact" />
+        <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-neutral-700">
+          <li>Email : idy11277</li>
+          <li>
+            Github :{" "}
+            <a href="https://github.com/Lamzang">https://github.com/Lamzang</a>
+          </li>
+        </ul>
+      </Section>
+    </div>
   );
 }
