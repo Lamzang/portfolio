@@ -13,7 +13,6 @@ export default function ThemeToggle() {
     return saved ?? (prefersDark ? "dark" : "light");
   });
 
-  // 초기 테마 적용
   useEffect(() => {
     if (theme === "dark") document.documentElement.classList.add("dark");
     else document.documentElement.classList.remove("dark");
@@ -22,10 +21,8 @@ export default function ThemeToggle() {
   const toggleTheme = () => {
     setTheme((prev) => {
       const next: Theme = prev === "light" ? "dark" : "light";
-
       if (next === "dark") document.documentElement.classList.add("dark");
       else document.documentElement.classList.remove("dark");
-
       localStorage.setItem("theme", next);
       return next;
     });
@@ -34,7 +31,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="rounded-lg p-2 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors cursor-pointer"
+      className="rounded p-1.5 text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition cursor-pointer"
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
       type="button"
     >

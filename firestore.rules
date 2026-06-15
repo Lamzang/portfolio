@@ -1,0 +1,25 @@
+rules_version = '2';
+
+// Firestore 보안 규칙 — Firebase 콘솔의 Firestore Database → 규칙 탭에 붙여넣거나
+// `firebase deploy --only firestore:rules` 로 배포하세요.
+// 읽기는 누구나, 쓰기는 아래 관리자 이메일로 로그인한 경우에만 허용합니다.
+// (이 이메일은 src/contexts/auth.tsx 의 ADMIN_EMAIL 과 반드시 일치해야 합니다.)
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == "idy11277@gmail.com"
+        && request.auth.token.email_verified == true;
+    }
+
+    match /projects/{slug} {
+      allow read: if true;
+      allow write: if isAdmin();
+
+      match /articles/{articleId} {
+        allow read: if true;
+        allow write: if isAdmin();
+      }
+    }
+  }
+}
